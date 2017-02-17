@@ -576,8 +576,6 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MashBin Logo Small" translatesAutoresizingMaskIntoConstraints="NO" id="iKs-Cd-n1h">
                                 <rect key="frame" x="138" y="20" width="45" height="45"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="45" id="Cba-Kh-QH2"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="45" id="St5-2h-LWa"/>
                                     <constraint firstAttribute="height" constant="45" id="cGb-MA-0Zs"/>
                                     <constraint firstAttribute="width" constant="45" id="l9t-kd-Xez"/>
                                 </constraints>
@@ -654,7 +652,7 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v38-0L-FbJ">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v38-0L-FbJ" userLabel="AddButton">
                                 <rect key="frame" x="120" y="483" width="80" height="80"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="80" id="88R-m3-80e"/>
@@ -692,6 +690,18 @@
                                     <constraint firstAttribute="height" constant="25" id="z6C-kq-YKX"/>
                                 </constraints>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9KA-ET-CEJ" userLabel="SignOutButton">
+                                <rect key="frame" x="259" y="22" width="45" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="9dh-EB-8P0"/>
+                                    <constraint firstAttribute="width" constant="45" id="Rn3-6t-Zw2"/>
+                                </constraints>
+                                <state key="normal" image="SignOut"/>
+                                <connections>
+                                    <action selector="signOutButtonPressed:" destination="2KE-Rk-lPc" eventType="touchUpInside" id="y2A-nX-ctk"/>
+                                    <segue destination="VcW-kt-dl4" kind="show" identifier="goToSignIn" id="WPh-D6-50w"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -703,7 +713,9 @@
                             <constraint firstItem="KSC-7C-4I1" firstAttribute="top" secondItem="t6k-hT-Ani" secondAttribute="top" id="Bl2-ff-OCy"/>
                             <constraint firstItem="rBs-nC-IgL" firstAttribute="top" secondItem="F9H-XM-uGF" secondAttribute="bottom" constant="30" id="Bty-h0-tLx"/>
                             <constraint firstAttribute="trailing" secondItem="KSC-7C-4I1" secondAttribute="trailing" id="ECJ-yh-KAR"/>
+                            <constraint firstItem="9KA-ET-CEJ" firstAttribute="top" secondItem="vWY-i1-8pD" secondAttribute="bottom" constant="2" id="KMw-bj-JmL"/>
                             <constraint firstItem="rBs-nC-IgL" firstAttribute="leading" secondItem="t6k-hT-Ani" secondAttribute="leading" id="PaB-ex-L1i"/>
+                            <constraint firstItem="9KA-ET-CEJ" firstAttribute="trailing" secondItem="t6k-hT-Ani" secondAttribute="trailingMargin" id="ROA-bK-8CF"/>
                             <constraint firstAttribute="trailing" secondItem="rBs-nC-IgL" secondAttribute="trailing" id="TlI-AJ-ShD"/>
                             <constraint firstItem="F4N-wD-fgL" firstAttribute="centerX" secondItem="t6k-hT-Ani" secondAttribute="centerX" id="dFQ-jw-Rtt"/>
                             <constraint firstItem="F9H-XM-uGF" firstAttribute="top" secondItem="F4N-wD-fgL" secondAttribute="bottom" constant="10" id="khF-TI-aCI"/>
@@ -809,8 +821,8 @@
                                     <action selector="facebookBtnPressed:" destination="VcW-kt-dl4" eventType="touchUpInside" id="Faq-gH-pli"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Sign In with Facebook" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hep-gk-d39">
-                                <rect key="frame" x="116" y="171" width="146" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Sign In with Facebook" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="hep-gk-d39">
+                                <rect key="frame" x="116" y="179" width="129" height="15"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="textColor" red="0.99607843139999996" green="0.86666666670000003" blue="0.074509803920000006" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="VarelaRound-Regular" family="Varela Round" pointSize="12"/>
@@ -840,13 +852,14 @@
                             <constraint firstItem="BrF-bG-vHa" firstAttribute="centerX" secondItem="DkB-v7-G5Z" secondAttribute="centerX" id="myz-bg-rq8"/>
                             <constraint firstItem="fWt-oe-PqK" firstAttribute="leading" secondItem="DkB-v7-G5Z" secondAttribute="leadingMargin" constant="60" id="oyn-A0-bmB"/>
                             <constraint firstAttribute="trailing" secondItem="qZK-aC-430" secondAttribute="trailing" id="q7g-eo-YoT"/>
-                            <constraint firstItem="hep-gk-d39" firstAttribute="top" secondItem="hu3-av-XHS" secondAttribute="bottom" constant="10" id="yAd-Ql-5Hv"/>
+                            <constraint firstItem="hep-gk-d39" firstAttribute="top" secondItem="hu3-av-XHS" secondAttribute="bottom" constant="18" id="yAd-Ql-5Hv"/>
                             <constraint firstItem="BrF-bG-vHa" firstAttribute="top" secondItem="fWt-oe-PqK" secondAttribute="bottom" constant="138" id="znN-JL-V5c"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="emailField" destination="BrF-bG-vHa" id="l1N-bp-jLX"/>
                         <outlet property="passwordField" destination="pej-31-mif" id="BTa-wh-n7H"/>
+                        <segue destination="2KE-Rk-lPc" kind="show" identifier="goToHome" id="QbV-qW-S8v"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bfO-Xa-od4" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -865,9 +878,10 @@
         <image name="FightClubPictoSize" width="67" height="100"/>
         <image name="MashBin Logo Small" width="43" height="42"/>
         <image name="Movie Add Box" width="102" height="46"/>
+        <image name="SignOut" width="48" height="36"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ZGa-E9-EtY"/>
-        <segue reference="iT2-W7-ak5"/>
+        <segue reference="hrh-Zf-97t"/>
+        <segue reference="QbV-qW-S8v"/>
     </inferredMetricsTieBreakers>
 </document>
