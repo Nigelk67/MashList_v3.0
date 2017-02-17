@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="2Pi-29-sLd">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="VcW-kt-dl4">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -766,30 +766,7 @@
                                 <color key="textColor" red="0.99607843137254903" green="0.8666666666666667" blue="0.074509803921568626" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" spacing="-5" translatesAutoresizingMaskIntoConstraints="NO" id="3FR-FJ-cqR" userLabel="Gmail Stack View">
-                                <rect key="frame" x="24" y="195" width="107" height="96"/>
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_gmail_128px" translatesAutoresizingMaskIntoConstraints="NO" id="NzL-6b-zpx">
-                                        <rect key="frame" x="12.5" y="0.0" width="82" height="82"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="82" id="XCk-jO-O5V"/>
-                                            <constraint firstAttribute="width" constant="82" id="f6o-3s-AQB"/>
-                                        </constraints>
-                                    </imageView>
-                                    <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Sign In with Gmail" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OC0-5I-zzh">
-                                        <rect key="frame" x="0.0" y="77" width="107" height="19"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <color key="textColor" red="0.99607843137254903" green="0.8666666666666667" blue="0.074509803921568626" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" name="VarelaRound-Regular" family="Varela Round" pointSize="10"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="107" id="pvt-wc-Fv9"/>
-                                    <constraint firstAttribute="height" constant="96" id="w38-Zl-BJ4"/>
-                                </constraints>
-                            </stackView>
-                            <textField opaque="NO" clipsSubviews="YES" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Email address" borderStyle="roundedRect" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="BrF-bG-vHa">
+                            <textField opaque="NO" clipsSubviews="YES" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email address" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="BrF-bG-vHa">
                                 <rect key="frame" x="44" y="339" width="232" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="232" id="Aa4-7O-gLr"/>
@@ -798,7 +775,7 @@
                                 <fontDescription key="fontDescription" name="VarelaRound-Regular" family="Varela Round" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Password" borderStyle="roundedRect" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="pej-31-mif">
+                            <textField opaque="NO" clipsSubviews="YES" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="pej-31-mif">
                                 <rect key="frame" x="44" y="386" width="232" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="232" id="LEl-RW-6vl"/>
@@ -821,38 +798,31 @@
                                     <action selector="signInButtonPressed:" destination="VcW-kt-dl4" eventType="touchUpInside" id="ecv-QR-Kh6"/>
                                 </connections>
                             </button>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="-5" translatesAutoresizingMaskIntoConstraints="NO" id="kdV-r5-dUB" userLabel="Facebook Stack View">
-                                <rect key="frame" x="169" y="205" width="125" height="94"/>
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FB-f-Logo__blue_1024" translatesAutoresizingMaskIntoConstraints="NO" id="rAV-E4-seV">
-                                        <rect key="frame" x="28" y="0.0" width="69" height="69"/>
-                                        <gestureRecognizers/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="69" id="Oq9-Nx-nIo"/>
-                                            <constraint firstAttribute="width" constant="69" id="Xol-bi-tSZ"/>
-                                        </constraints>
-                                        <connections>
-                                            <outletCollection property="gestureRecognizers" destination="66u-jd-1tg" appends="YES" id="wdv-To-ncB"/>
-                                        </connections>
-                                    </imageView>
-                                    <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Sign In with Facebook" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hep-gk-d39">
-                                        <rect key="frame" x="0.0" y="64" width="125" height="30"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <color key="textColor" red="0.99607843139999996" green="0.86666666670000003" blue="0.074509803920000006" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" name="VarelaRound-Regular" family="Varela Round" pointSize="10"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                </subviews>
+                            <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fWt-oe-PqK">
+                                <rect key="frame" x="76" y="171" width="30" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="125" id="4c8-GD-gAU"/>
-                                    <constraint firstAttribute="height" constant="94" id="fMZ-tU-U1s"/>
+                                    <constraint firstAttribute="width" constant="30" id="EB7-kd-GbS"/>
+                                    <constraint firstAttribute="height" constant="30" id="X13-sx-yq6"/>
                                 </constraints>
-                            </stackView>
+                                <state key="normal" image="FB-f-Logo__blue_1024"/>
+                                <connections>
+                                    <action selector="facebookBtnPressed:" destination="VcW-kt-dl4" eventType="touchUpInside" id="Faq-gH-pli"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Sign In with Facebook" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hep-gk-d39">
+                                <rect key="frame" x="116" y="171" width="146" height="30"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="textColor" red="0.99607843139999996" green="0.86666666670000003" blue="0.074509803920000006" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="VarelaRound-Regular" family="Varela Round" pointSize="12"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="facebookBtnPressed:" destination="VcW-kt-dl4" eventType="touchUpInside" id="o7Z-Py-JI9"/>
+                                </connections>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="hu3-av-XHS" firstAttribute="top" secondItem="q3f-f2-9NN" secondAttribute="bottom" constant="8" id="4NH-T6-Ufw"/>
-                            <constraint firstItem="3FR-FJ-cqR" firstAttribute="top" secondItem="DkB-v7-G5Z" secondAttribute="top" constant="195" id="737-U8-Ehr"/>
                             <constraint firstItem="q3f-f2-9NN" firstAttribute="top" secondItem="44u-Jc-xOb" secondAttribute="bottom" constant="10" id="9x7-2D-U9e"/>
                             <constraint firstItem="pej-31-mif" firstAttribute="centerX" secondItem="DkB-v7-G5Z" secondAttribute="centerX" id="ES8-l7-C28"/>
                             <constraint firstItem="9Ui-Rf-4d3" firstAttribute="top" secondItem="pej-31-mif" secondAttribute="bottom" constant="40" id="Jus-87-WC8"/>
@@ -861,17 +831,17 @@
                             <constraint firstItem="pej-31-mif" firstAttribute="top" secondItem="BrF-bG-vHa" secondAttribute="bottom" constant="17" id="Ria-C7-nOJ"/>
                             <constraint firstItem="q3f-f2-9NN" firstAttribute="centerX" secondItem="DkB-v7-G5Z" secondAttribute="centerX" id="RwL-ol-ewB"/>
                             <constraint firstItem="qZK-aC-430" firstAttribute="top" secondItem="DkB-v7-G5Z" secondAttribute="top" id="Voi-ab-dii"/>
-                            <constraint firstItem="3FR-FJ-cqR" firstAttribute="top" secondItem="hu3-av-XHS" secondAttribute="bottom" constant="34" id="W6x-Bv-N3x"/>
                             <constraint firstItem="qZK-aC-430" firstAttribute="leading" secondItem="DkB-v7-G5Z" secondAttribute="leading" id="WyM-8n-fmi"/>
+                            <constraint firstItem="fWt-oe-PqK" firstAttribute="top" secondItem="hu3-av-XHS" secondAttribute="bottom" constant="10" id="gpt-YH-f2v"/>
                             <constraint firstItem="hu3-av-XHS" firstAttribute="centerX" secondItem="DkB-v7-G5Z" secondAttribute="centerX" id="i86-Nl-24S"/>
                             <constraint firstItem="JFv-qo-Bh0" firstAttribute="top" secondItem="qZK-aC-430" secondAttribute="bottom" id="iBe-8L-Wyp"/>
-                            <constraint firstItem="BrF-bG-vHa" firstAttribute="top" secondItem="3FR-FJ-cqR" secondAttribute="bottom" constant="48" id="lfr-Xc-Knt"/>
+                            <constraint firstItem="hep-gk-d39" firstAttribute="leading" secondItem="fWt-oe-PqK" secondAttribute="trailing" constant="10" id="lS6-Pw-n3j"/>
                             <constraint firstItem="44u-Jc-xOb" firstAttribute="centerX" secondItem="DkB-v7-G5Z" secondAttribute="centerX" id="m0C-nS-deZ"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="kdV-r5-dUB" secondAttribute="trailing" constant="10" id="mDH-1K-ive"/>
                             <constraint firstItem="BrF-bG-vHa" firstAttribute="centerX" secondItem="DkB-v7-G5Z" secondAttribute="centerX" id="myz-bg-rq8"/>
+                            <constraint firstItem="fWt-oe-PqK" firstAttribute="leading" secondItem="DkB-v7-G5Z" secondAttribute="leadingMargin" constant="60" id="oyn-A0-bmB"/>
                             <constraint firstAttribute="trailing" secondItem="qZK-aC-430" secondAttribute="trailing" id="q7g-eo-YoT"/>
-                            <constraint firstItem="kdV-r5-dUB" firstAttribute="leading" secondItem="3FR-FJ-cqR" secondAttribute="trailing" constant="38" id="xyz-gd-Jel"/>
-                            <constraint firstItem="BrF-bG-vHa" firstAttribute="top" secondItem="kdV-r5-dUB" secondAttribute="bottom" constant="40" id="yCj-6D-SH1"/>
+                            <constraint firstItem="hep-gk-d39" firstAttribute="top" secondItem="hu3-av-XHS" secondAttribute="bottom" constant="10" id="yAd-Ql-5Hv"/>
+                            <constraint firstItem="BrF-bG-vHa" firstAttribute="top" secondItem="fWt-oe-PqK" secondAttribute="bottom" constant="138" id="znN-JL-V5c"/>
                         </constraints>
                     </view>
                     <connections>
@@ -880,11 +850,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bfO-Xa-od4" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="66u-jd-1tg">
-                    <connections>
-                        <action selector="facebookBtnPressed:" destination="VcW-kt-dl4" id="QfI-tq-Q3S"/>
-                    </connections>
-                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2557.5" y="51.760563380281688"/>
         </scene>
@@ -900,7 +865,6 @@
         <image name="FightClubPictoSize" width="67" height="100"/>
         <image name="MashBin Logo Small" width="43" height="42"/>
         <image name="Movie Add Box" width="102" height="46"/>
-        <image name="logo_gmail_128px" width="128" height="128"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="ZGa-E9-EtY"/>

@@ -63,5 +63,14 @@
     <string>1114642571995590</string>
     <key>FacebookDisplayName</key>
     <string>The MashList</string>
+    <key>LSApplicationQueriesSchemes</key>
+    <array>
+        <string>fbapi</string>
+        <string>fb-messenger-api</string>
+        <string>fbauth2</string>
+        <string>fbshareextension</string>
+    </array>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>{human-readable reason for photo access}</string>
 </dict>
 </plist>
