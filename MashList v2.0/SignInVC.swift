@@ -11,11 +11,12 @@ import Firebase
 import FBSDKCoreKit
 import FBSDKLoginKit
 import SwiftKeychainWrapper
+import GoogleSignIn
 
 
 
 
-class SignInVC: UIViewController {
+class SignInVC: UIViewController, GIDSignInUIDelegate {
     
     
     @IBOutlet weak var emailField: UITextField!
@@ -24,6 +25,10 @@ class SignInVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        GIDSignIn.sharedInstance().uiDelegate = self
+        GIDSignIn.sharedInstance().signIn()
+        
         
     }
     
@@ -96,12 +101,15 @@ class SignInVC: UIViewController {
                 }
             })
         }
-        
-        
-        
-        
     }
     
+    
+    @IBAction func googleSignInButtonPressed(_ sender: UIButton) {
+        
+        GIDSignIn.sharedInstance().signIn()
+        performSegue(withIdentifier: "goToHome", sender: nil)
+        
+    }
     
     func completeSignIn(id: String) {
         

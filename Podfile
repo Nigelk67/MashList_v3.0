@@ -12,6 +12,7 @@ target 'MashList v2.0' do
 pod 'Alamofire', '~> 4.3'
 pod 'FBSDKLoginKit'
 pod 'SwiftKeychainWrapper'
+pod 'Google/SignIn'
 
   # Pods for MashList v2.0
 
