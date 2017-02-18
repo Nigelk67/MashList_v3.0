@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import SwiftKeychainWrapper
+import Firebase
+
 
 class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -64,6 +67,17 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     
+    @IBAction func signOutButtonPressed(_ sender: UIButton) {
+        
+        //Removes Keychain authentication:-
+        KeychainWrapper.standard.removeObject(forKey: KEY_UID)
+        
+        //signs out from Firebase:-
+        try! FIRAuth.auth()?.signOut()
+        
+        performSegue(withIdentifier: "goToSignIn", sender: nil)
+        
+    }
     
     
     

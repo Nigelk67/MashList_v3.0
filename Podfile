@@ -11,6 +11,8 @@ target 'MashList v2.0' do
   pod 'Firebase/Storage'
 pod 'Alamofire', '~> 4.3'
 pod 'FBSDKLoginKit'
+pod 'SwiftKeychainWrapper'
+
   # Pods for MashList v2.0
 
 end
