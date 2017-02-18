@@ -11,6 +11,9 @@ import Firebase
 import FBSDKCoreKit
 import FBSDKLoginKit
 
+
+
+
 class SignInVC: UIViewController {
     
     
@@ -23,6 +26,7 @@ class SignInVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
     }
 
     
@@ -74,6 +78,7 @@ class SignInVC: UIViewController {
                 }
             })
         }
+        
         
         
         
