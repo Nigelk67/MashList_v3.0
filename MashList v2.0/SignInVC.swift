@@ -27,7 +27,7 @@ class SignInVC: UIViewController, GIDSignInUIDelegate {
         super.viewDidLoad()
         
         GIDSignIn.sharedInstance().uiDelegate = self
-        GIDSignIn.sharedInstance().signIn()
+        //GIDSignIn.sharedInstance().signIn()
         
         
     }
@@ -103,10 +103,33 @@ class SignInVC: UIViewController, GIDSignInUIDelegate {
         }
     }
     
+    //ANONYMOUS SIGN IN:-
+    @IBAction func anonymousSignin(_ sender: Any) {
+        
+        FIRAuth.auth()?.signInAnonymously(completion: { (user, error) in
+            if error != nil {
+                print("NIGE: Unable to sign in anonymously")
+                let alert = UIAlertController(title: "WTF??", message: error?.localizedDescription, preferredStyle: .alert)
+                let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                alert.addAction(defaultAction)
+                self.present(alert, animated: true, completion: nil)
+                
+            } else {
+                print("NIGE: Successfully sign in anonymously")
+                if let user = user {
+                    self.completeSignIn(id: user.uid)
+                }
+            }
+        })
+        
+    }
     
+    
+    //GOOGLE SIGN IN:-
     @IBAction func googleSignInButtonPressed(_ sender: UIButton) {
         
         GIDSignIn.sharedInstance().signIn()
+        
         performSegue(withIdentifier: "goToHome", sender: nil)
         
     }
@@ -118,7 +141,6 @@ class SignInVC: UIViewController, GIDSignInUIDelegate {
         performSegue(withIdentifier: "goToHome", sender: nil)
         
     }
-    
     
     
     
