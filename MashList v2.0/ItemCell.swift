@@ -25,7 +25,7 @@ class ItemCell: UICollectionViewCell {
         
         //dcs: just loaded more data points to fill out the CV a bit
         self.nameLbl.text = item.mediaTitle
-        self.directorLbl.text = "Director: \(item.director)"
+        self.directorLbl.text = item.director
         self.itemDescriptionLbl.text = item.itemDescription
         
         

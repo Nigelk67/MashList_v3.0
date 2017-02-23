@@ -12,7 +12,7 @@ var search: SearchVC!
 
 let CORE_URL = "https://itunes.apple.com/search?term="
 let COUNTRY = "&country=GB"
-let TYPE = "&entity=movie"
+let TYPE = "&entity=tv"
 let TEST_URL = "https://itunes.apple.com/search?term=Xmen&country=GB&entity=movie"
 
 let SEARCH_URL = "\(CORE_URL)\(search.searchBar.text)\(COUNTRY)\(TYPE)"

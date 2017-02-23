@@ -16,7 +16,7 @@ import GoogleSignIn
 
 
 
-class SignInVC: UIViewController, GIDSignInUIDelegate {
+class SignInVC: UIViewController, GIDSignInUIDelegate, UITextFieldDelegate {
     
     
     @IBOutlet weak var emailField: UITextField!
@@ -29,15 +29,27 @@ class SignInVC: UIViewController, GIDSignInUIDelegate {
         GIDSignIn.sharedInstance().uiDelegate = self
         //GIDSignIn.sharedInstance().signIn()
         
+        passwordField.delegate = self
+        
+        
+        
         
     }
     
+    //Checks to seeif user already has an account:-
     override func viewDidAppear(_ animated: Bool) {
         if let _ = KeychainWrapper.standard.string(forKey: KEY_UID) {
             performSegue(withIdentifier: "goToHome", sender: nil)
         }
     }
-
+    
+    
+    //Gets rid of keyboard after the 'DONE' key is pressed in the password field:
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
     
     //FACEBOOK sign in:-
     @IBAction func facebookBtnPressed(_ sender: UITapGestureRecognizer) {
@@ -52,6 +64,18 @@ class SignInVC: UIViewController, GIDSignInUIDelegate {
             } else {
                 print("NIGE: Successfully autheinticated with Facebook")
                 let credential = FIRFacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
+                FIRAuth.auth()?.currentUser?.link(with: credential, completion: { (user, error) in
+                    if error != nil {
+                        let alert = UIAlertController(title: "WTF??", message: error?.localizedDescription, preferredStyle: .alert)
+                        let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                        alert.addAction(defaultAction)
+                        self.present(alert, animated: true, completion: nil)
+                    } else {
+                    print("NIGE: Successfully linked Facebook sign in with anon user")
+                        //Add in the Firebase Database stuff HERE!!
+                    }
+
+                })
                 self.firebaseAuth(credential)
             }
         }
@@ -83,25 +107,43 @@ class SignInVC: UIViewController, GIDSignInUIDelegate {
                     if let user = user {
                         self.completeSignIn(id: user.uid)
                         }
-                    
-                    
+                
                 } else {
                     FIRAuth.auth()?.createUser(withEmail: email, password: pwd, completion: { (user, error) in
                         if error != nil {
                             print("NIGE: Unable to authenticate with Firebase using email")
                         } else {
                             print("NIGE: Succesfully authenticated withFirebase")
-                            
+                            //LINKS anonymous user to email and password account:-
+                            let credential = FIREmailPasswordAuthProvider.credential(withEmail: email, password: pwd)
+                            FIRAuth.auth()?.currentUser?.link(with: credential, completion: { (user, error) in
+                                if error != nil {
+                                    let alert = UIAlertController(title: "Unable to link your ananymous account", message: error?.localizedDescription, preferredStyle: .alert)
+                                    let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                                    alert.addAction(defaultAction)
+                                    self.present(alert, animated: true, completion: nil)
+                                } else {
+                                    print("Linked to anon user")
+                                    //Need to add in the link to create a Database user
+                                }
+
                             if let user = user {
-                                
                             self.completeSignIn(id: user.uid)
-                        }
-                        }
-                    })
-                }
-            })
-        }
-    }
+                    }
+                })
+            }
+        })
+       }
+    })
+  }
+}
+    
+            
+            
+            
+            
+        
+    
     
     //ANONYMOUS SIGN IN:-
     @IBAction func anonymousSignin(_ sender: Any) {

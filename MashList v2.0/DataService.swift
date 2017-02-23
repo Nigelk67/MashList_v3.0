@@ -22,9 +22,9 @@ class DataService {
     var search: SearchVC!
     
     ///dcs:  added completion handler to this method that will send back an array of mediaitem objects
-    func downloadiTunesData(trimmedText: String, completion: @escaping (_ result: [MediaItem]) -> Void) {
+    func downloadiTunesData(trimmedText: String, type: String, completion: @escaping (_ result: [MediaItem]) -> Void) {
             
-        Alamofire.request("\(CORE_URL)\(trimmedText)\(COUNTRY)\(TYPE)").responseJSON(completionHandler: { (response) in
+        Alamofire.request("\(CORE_URL)\(trimmedText)\(COUNTRY)\(type)").responseJSON(completionHandler: { (response) in
             if let dict = response.result.value as? Dictionary<String, AnyObject> {
                 //dcs:  results is actually an array of dictionaries, so I casted it as such.  The rest of the method is somewhat self explanatory
                 if let results = dict["results"] as? NSArray {
@@ -39,7 +39,11 @@ class DataService {
                                 mItem.imgURL = value as! String
                             }
                             
-                            if key == "trackName" {
+                            if key == "trackName" && type == "&media=movie" {
+                                mItem.mediaTitle = value as! String
+                            }
+                            
+                            if key == "artistName" && type == "&media=tvShow&entity=tvSeason" {
                                 mItem.mediaTitle = value as! String
                             }
                             
@@ -47,7 +51,10 @@ class DataService {
                                 mItem.itemDescription = value as! String
                             }
                             
-                            if key == "artistName" {
+                            if key == "artistName" && type == "&media=movie" {
+                                mItem.director = "Dir: \(value)" 
+                            }
+                            if key == "collectionName" && type == "&media=tvShow&entity=tvSeason" {
                                 mItem.director = value as! String
                             }
                             

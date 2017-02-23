@@ -60,7 +60,7 @@ class SearchVC: UIViewController, UICollectionViewDelegate, UICollectionViewData
         
         tvButton.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
         movieButton.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
-        type = "tv"
+        type = "&media=tvShow&entity=tvSeason"
     }
     
     
@@ -69,7 +69,7 @@ class SearchVC: UIViewController, UICollectionViewDelegate, UICollectionViewData
         
         movieButton.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
         tvButton.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
-        type = "movie"
+        type = "&media=movie"
     }
     
     
@@ -87,7 +87,7 @@ class SearchVC: UIViewController, UICollectionViewDelegate, UICollectionViewData
             //Removes keyboard:-
             searchBar.resignFirstResponder()
             
-            DataService.ds.downloadiTunesData(trimmedText: trimmedText, completion: { (DownloadedItems) in
+            DataService.ds.downloadiTunesData(trimmedText: trimmedText, type: type, completion: { (DownloadedItems) in
                 self.mediaItems = DownloadedItems
                 
             self.collection.reloadData()

@@ -22,27 +22,14 @@ private var _price: String!
 private var _backdropImage: String!
     
     
-    //For tableview on HomeScreen:-
-    
-//    init(imgURL: String, director: String, itemDescription: String, mediaTitle: String) {
-//        
-//        _imgURL = imgURL
-//        _director = director
-//        _itemDescription = itemDescription
-//        _mediaTitle = mediaTitle
-//        
-//    }
     
     var Price: String {
         get {
             if _price == nil {
                 _price = ""
             }
-            
             return _price
-            
         }
-        
         set {
             _price = newValue
         }
@@ -54,15 +41,13 @@ private var _backdropImage: String!
             if _imgURL == nil {
                 _imgURL = ""
             }
-            
             return _imgURL
-
         }
-        
         set {
             _imgURL = newValue
         }
     }
+    
 
 var image: String {
     if _image == nil {
@@ -72,8 +57,6 @@ var image: String {
     }
 
 var mediaTitle: String {
-    
-    
     get {
         if _mediaTitle == nil {
             _mediaTitle = ""
@@ -101,33 +84,30 @@ var director: String {
     
     
 var itemDescription: String {
-    
-    
     get {
         if _itemDescription == nil {
             _itemDescription = ""
         }
         return _itemDescription
     }
-    
     set {
         _itemDescription = newValue
     }
 }
+    
     
     var ArtistName: String {
         get {
             if _artistName == nil {
                 _artistName = ""
             }
-            
             return _artistName
         }
         set {
             _artistName = newValue
         }
-        
     }
+    
     
     var backdropImage: String {
         get {

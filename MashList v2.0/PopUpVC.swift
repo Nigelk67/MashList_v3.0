@@ -48,7 +48,7 @@ class PopUpVC: UIViewController, UITextFieldDelegate {
         
         
              nameLbl.text = item.mediaTitle
-        directorLbl.text = "Director: \(item.director)"
+        directorLbl.text = item.director
         itemDetail.text = item.itemDescription
         
         //For the image:-
