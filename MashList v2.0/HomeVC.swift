@@ -20,6 +20,8 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var mediaItems = [MediaItem]()
     
+    static var imageCache: NSCache<NSString, UIImage> = NSCache()
+    
     
     
     //Array for the item - something like - var mediaItems = [MediaItem]()
@@ -59,11 +61,20 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+        //refers to Posts array (see above)
         let post = posts[indexPath.row]
         
         if let cell = tableView.dequeueReusableCell(withIdentifier: "HomeScreenCell") as? HomeScreenCell {
+            
+            //For the images from the cache:-
+            if let img = HomeVC.imageCache.object(forKey: post.imageURL as NSString) {
+                cell.configureCell(post: post, img: img)
+                return cell
+            } else {
+            
             cell.configureCell(post: post)
             return cell
+            }
         } else {
             return HomeScreenCell()
         }

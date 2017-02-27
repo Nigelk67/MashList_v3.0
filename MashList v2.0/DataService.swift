@@ -10,7 +10,8 @@ import Foundation
 import Alamofire
 import Firebase
 
-
+//For the images - use Firebase storage:-
+let STORAGE_BASE = FIRStorage.storage().reference()
 
 let DB_BASE = FIRDatabase.database().reference()
 
@@ -18,12 +19,18 @@ class DataService {
     
     static let ds = DataService()
     
+    
     var mediaTitles = [MediaItem]()
     var TmdbTitles = [MediaItem]()
     var images = [String]()
    
     var mediaItem: MediaItem!
     var search: SearchVC!
+    
+    //DB references to the title-posters:-
+    private var _REF_POSTERS = STORAGE_BASE.child("title-posters")
+
+    
     
     //Firebase Database Info:-
     private var _REF_BASE = DB_BASE
@@ -41,6 +48,15 @@ class DataService {
     var REF_USERS: FIRDatabaseReference {
         return _REF_USERS
     }
+    
+    
+    
+    var REF_POSTERS: FIRStorageReference {
+        return _REF_POSTERS
+    }
+    
+    
+    
     
     func createFirebaseDBUser(uid: String, userData: Dictionary<String, String>) {
         REF_USERS.child(uid).updateChildValues(userData)

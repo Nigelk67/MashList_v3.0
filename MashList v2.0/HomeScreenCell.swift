@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class HomeScreenCell: UITableViewCell {
     
@@ -25,14 +26,35 @@ class HomeScreenCell: UITableViewCell {
 
    
    
-    func configureCell(post: Post) {
+    func configureCell(post: Post, img: UIImage? = nil) {
         
         titleLbl.text = post.title
         directorLabel.text = "Dir: \(post.director)"
         titleDesc.text = post.longDesc
         recommendedByLbl.text = "Recommended by: \(post.recommendedBy)"
-//
-//        
+
+        if img != nil {
+            titleImg.image = img
+        } else {
+                let ref = FIRStorage.storage().reference(forURL: post.imageURL)
+                ref.data(withMaxSize: 2 * 1024 * 1024, completion: { (data, error) in
+                    if error != nil {
+                        print("NIGE: Unable to download image from Firebase Storage")
+                    } else {
+                        print("NIGE: Image downloaded from Firebase storage")
+                        if let imgData = data {
+                            if let img = UIImage(data: imgData) {
+                                self.titleImg.image = img
+                                //Saves images to the cache:-
+                                HomeVC.imageCache.setObject(img, forKey: post.imageURL as NSString)
+                            }
+                        }
+                    }
+                })
+        }
+        
+        
+        
 //        let url = URL(string: post.imageURL)
 //        DispatchQueue.global().async {
 //            do {
