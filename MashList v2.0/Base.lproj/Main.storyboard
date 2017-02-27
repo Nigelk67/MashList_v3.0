@@ -110,7 +110,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VkR-ZC-iGP">
-                                <rect key="frame" x="130.5" y="67" width="59.5" height="35"/>
+                                <rect key="frame" x="130" y="67" width="60" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="jJm-pR-NZd"/>
                                 </constraints>
@@ -626,7 +626,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recommended by: Maya Karan" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0cv-f7-b2E">
-                                                    <rect key="frame" x="76" y="5" width="212" height="15"/>
+                                                    <rect key="frame" x="54" y="5" width="212" height="15"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="212" id="aQD-Ja-dkv"/>
                                                         <constraint firstAttribute="height" constant="15" id="nO2-4A-QBe"/>
@@ -639,7 +639,6 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.85466056034482762" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstAttribute="trailingMargin" secondItem="haT-9q-xK1" secondAttribute="trailing" constant="5" id="ANf-xQ-nhp"/>
-                                                <constraint firstItem="0cv-f7-b2E" firstAttribute="leading" secondItem="ObM-cE-Ntz" secondAttribute="trailing" constant="8" id="E92-EA-iwA"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="w3U-7W-uhL" secondAttribute="trailing" constant="6" id="P5y-gu-7Hl"/>
                                                 <constraint firstItem="w3U-7W-uhL" firstAttribute="top" secondItem="487-lk-BT9" secondAttribute="bottom" constant="4" id="QCf-8o-lfb"/>
                                                 <constraint firstAttribute="trailing" secondItem="487-lk-BT9" secondAttribute="trailing" constant="30" id="QVn-Ux-lII"/>
@@ -650,6 +649,7 @@
                                                 <constraint firstItem="ObM-cE-Ntz" firstAttribute="top" secondItem="2nR-gO-kwh" secondAttribute="top" constant="10" id="o9n-dU-Skg"/>
                                                 <constraint firstItem="487-lk-BT9" firstAttribute="leading" secondItem="ObM-cE-Ntz" secondAttribute="trailing" constant="10" id="rLJ-B5-uMp"/>
                                                 <constraint firstItem="w3U-7W-uhL" firstAttribute="leading" secondItem="2nR-gO-kwh" secondAttribute="leadingMargin" constant="70" id="uYy-dC-HnI"/>
+                                                <constraint firstItem="0cv-f7-b2E" firstAttribute="centerX" secondItem="2nR-gO-kwh" secondAttribute="centerX" id="vj6-ny-QHC"/>
                                                 <constraint firstItem="487-lk-BT9" firstAttribute="top" secondItem="2nR-gO-kwh" secondAttribute="top" constant="20" id="xpq-Mo-DYe"/>
                                                 <constraint firstItem="w3U-7W-uhL" firstAttribute="bottom" secondItem="2nR-gO-kwh" secondAttribute="bottomMargin" id="zV0-BH-uYa"/>
                                             </constraints>
@@ -842,7 +842,7 @@
                                 <rect key="frame" x="44" y="181" width="232" height="138"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign in with email" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SmQ-jB-bjP">
-                                        <rect key="frame" x="43.5" y="0.0" width="145" height="21"/>
+                                        <rect key="frame" x="44" y="0.0" width="145" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="K4f-aF-hkQ"/>
                                             <constraint firstAttribute="width" constant="145" id="aoE-l5-BPk"/>

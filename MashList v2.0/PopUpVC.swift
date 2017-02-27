@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import Firebase
 
 
 class PopUpVC: UIViewController, UITextFieldDelegate {
@@ -116,10 +117,63 @@ class PopUpVC: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func continueBtnPressed(_ sender: Any) {
+        if let img = thumbImg.image {
+            //Converts image to image data to pass into Firebase (as a JPEG) & compresses it:-
+        if let imgData = UIImageJPEGRepresentation(img, 0.2) {
+            
+            //Gives the image a unique ID:-
+            let imgUid = NSUUID().uuidString
+            
+            //Lets Firebase Storage know what type of image you are passing in:-
+            let metaData = FIRStorageMetadata()
+            metaData.contentType = "image/jpeg"
+            
+            //Passes unique image into Firebase Storage:-
+            DataService.ds.REF_POSTERS.child(imgUid).put(imgData, metadata: metaData) { (metaData, error) in
+                if error != nil {
+                    print("NIGE: Unable to upload image to FB Storage")
+                } else {
+                    print("NIGE: Successfully uploaded image to FB Storage")
+                    let downloadUrl = metaData?.downloadURL()?.absoluteString
+                    
+                    //Unwrap it for function:-
+                    if let url = downloadUrl {
+                        
+                    self.postToFirebase(imgUrl: url)
+                }
+            }
+        }
+            
+    }
         
         performSegue(withIdentifier: "HomeVC", sender: "PopUpVC")
         
     }
+  }
+    //Create an object to post to Firebase:-
+    func postToFirebase(imgUrl: String) {
+        let post: Dictionary<String, AnyObject> = [
+        "description": itemDetail.text as AnyObject,
+        "director": directorLbl.text as AnyObject,
+        "imageURL": imgUrl as AnyObject,
+        "recommendedby": RecommendedByLbl.text as AnyObject,
+        "title": nameLbl.text as AnyObject
+        ]
+        //Posts object to Firebase, creating a unique post ID:
+        let firebasePost = DataService.ds.REF_POSTS.childByAutoId()
+        firebasePost.setValue(post)
+        
+        //This clears out the fields (caption and image) ready for a new post:-
+        itemDetail.text = ""
+        directorLbl.text = ""
+        RecommendedByLbl.text = ""
+        nameLbl.text = ""
+        //Clearing out the IMAGE??????
+        
+        
+    }
+    
+    
     
     
     @IBAction func skipBtnPressed(_ sender: Any) {
