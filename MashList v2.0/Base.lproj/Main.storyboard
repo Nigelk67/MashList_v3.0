@@ -564,7 +564,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your MashList" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F4N-wD-fgL">
-                                <rect key="frame" x="84.5" y="75" width="152.5" height="35"/>
+                                <rect key="frame" x="84" y="75" width="153" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="HmU-s9-smu"/>
                                 </constraints>
@@ -581,7 +581,7 @@
                                     <constraint firstAttribute="width" constant="45" id="l9t-kd-Xez"/>
                                 </constraints>
                             </imageView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="123" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rBs-nC-IgL">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="123" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rBs-nC-IgL">
                                 <rect key="frame" x="0.0" y="134" width="320" height="394"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -599,10 +599,10 @@
                                                         <constraint firstAttribute="height" constant="85" id="vld-VR-TZn"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="XMen 13 - This Title Could Be Really Long" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="487-lk-BT9">
-                                                    <rect key="frame" x="78" y="5" width="212" height="39"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="XMen 13" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="487-lk-BT9">
+                                                    <rect key="frame" x="78" y="20" width="212" height="25"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="39" id="ltr-Jn-7ax"/>
+                                                        <constraint firstAttribute="height" constant="25" id="ltr-Jn-7ax"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="VarelaRound-Regular" family="Varela Round" pointSize="16"/>
                                                     <color key="textColor" red="0.99607843139999996" green="0.86666666670000003" blue="0.074509803920000006" alpha="1" colorSpace="calibratedRGB"/>
@@ -610,7 +610,7 @@
                                                     <size key="shadowOffset" width="0.0" height="0.0"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dir: Christopher Nilan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="haT-9q-xK1">
-                                                    <rect key="frame" x="78" y="46" width="229" height="15"/>
+                                                    <rect key="frame" x="78" y="40" width="229" height="15"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="15" id="QNV-ta-8fd"/>
                                                     </constraints>
@@ -618,23 +618,20 @@
                                                     <color key="textColor" red="0.99607843139999996" green="0.86666666670000003" blue="0.074509803920000006" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w3U-7W-uhL">
-                                                    <rect key="frame" x="78" y="78" width="228" height="36"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="36" id="JWN-AI-ztA"/>
-                                                    </constraints>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w3U-7W-uhL">
+                                                    <rect key="frame" x="78" y="49" width="228" height="65"/>
                                                     <string key="text">This could be the greatest TV show ever made, but probably isn't, just lots of drivelly hype. I'll keep writing to see where it goes</string>
                                                     <fontDescription key="fontDescription" name="VarelaRound-Regular" family="Varela Round" pointSize="10"/>
                                                     <color key="textColor" red="0.99607843139999996" green="0.86666666670000003" blue="0.074509803920000006" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recommended by: Maya Karan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0cv-f7-b2E">
-                                                    <rect key="frame" x="78" y="64" width="212" height="15"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recommended by: Maya Karan" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0cv-f7-b2E">
+                                                    <rect key="frame" x="76" y="5" width="212" height="15"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="212" id="aQD-Ja-dkv"/>
                                                         <constraint firstAttribute="height" constant="15" id="nO2-4A-QBe"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="VarelaRound-Regular" family="Varela Round" pointSize="11"/>
+                                                    <fontDescription key="fontDescription" name="VarelaRound-Regular" family="Varela Round" pointSize="10"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -642,22 +639,24 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.85466056034482762" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstAttribute="trailingMargin" secondItem="haT-9q-xK1" secondAttribute="trailing" constant="5" id="ANf-xQ-nhp"/>
+                                                <constraint firstItem="0cv-f7-b2E" firstAttribute="leading" secondItem="ObM-cE-Ntz" secondAttribute="trailing" constant="8" id="E92-EA-iwA"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="w3U-7W-uhL" secondAttribute="trailing" constant="6" id="P5y-gu-7Hl"/>
+                                                <constraint firstItem="w3U-7W-uhL" firstAttribute="top" secondItem="487-lk-BT9" secondAttribute="bottom" constant="4" id="QCf-8o-lfb"/>
                                                 <constraint firstAttribute="trailing" secondItem="487-lk-BT9" secondAttribute="trailing" constant="30" id="QVn-Ux-lII"/>
-                                                <constraint firstItem="0cv-f7-b2E" firstAttribute="top" secondItem="487-lk-BT9" secondAttribute="bottom" constant="20" id="VbA-a1-hvz"/>
-                                                <constraint firstItem="0cv-f7-b2E" firstAttribute="leading" secondItem="ObM-cE-Ntz" secondAttribute="trailing" constant="10" id="YfJ-3Y-xm7"/>
                                                 <constraint firstItem="haT-9q-xK1" firstAttribute="leading" secondItem="ObM-cE-Ntz" secondAttribute="trailing" constant="10" id="cGG-vV-8Uv"/>
+                                                <constraint firstItem="haT-9q-xK1" firstAttribute="top" secondItem="0cv-f7-b2E" secondAttribute="bottom" constant="20" id="gpy-7f-ZKB"/>
                                                 <constraint firstItem="ObM-cE-Ntz" firstAttribute="leading" secondItem="2nR-gO-kwh" secondAttribute="leading" constant="8" id="hTB-Fp-tPR"/>
+                                                <constraint firstItem="0cv-f7-b2E" firstAttribute="top" secondItem="2nR-gO-kwh" secondAttribute="top" constant="5" id="kmq-u0-AfU"/>
                                                 <constraint firstItem="ObM-cE-Ntz" firstAttribute="top" secondItem="2nR-gO-kwh" secondAttribute="top" constant="10" id="o9n-dU-Skg"/>
                                                 <constraint firstItem="487-lk-BT9" firstAttribute="leading" secondItem="ObM-cE-Ntz" secondAttribute="trailing" constant="10" id="rLJ-B5-uMp"/>
-                                                <constraint firstItem="haT-9q-xK1" firstAttribute="top" secondItem="487-lk-BT9" secondAttribute="bottom" constant="2" id="rmN-ch-UCL"/>
                                                 <constraint firstItem="w3U-7W-uhL" firstAttribute="leading" secondItem="2nR-gO-kwh" secondAttribute="leadingMargin" constant="70" id="uYy-dC-HnI"/>
-                                                <constraint firstItem="487-lk-BT9" firstAttribute="top" secondItem="2nR-gO-kwh" secondAttribute="top" constant="5" id="xpq-Mo-DYe"/>
+                                                <constraint firstItem="487-lk-BT9" firstAttribute="top" secondItem="2nR-gO-kwh" secondAttribute="top" constant="20" id="xpq-Mo-DYe"/>
                                                 <constraint firstItem="w3U-7W-uhL" firstAttribute="bottom" secondItem="2nR-gO-kwh" secondAttribute="bottomMargin" id="zV0-BH-uYa"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="directorLabel" destination="haT-9q-xK1" id="nhz-aP-HGl"/>
+                                            <outlet property="recommendedByLbl" destination="0cv-f7-b2E" id="lEK-T0-nn2"/>
                                             <outlet property="titleDesc" destination="w3U-7W-uhL" id="rMG-Oy-WEA"/>
                                             <outlet property="titleImg" destination="ObM-cE-Ntz" id="lOV-e3-CF6"/>
                                             <outlet property="titleLbl" destination="487-lk-BT9" id="948-wI-jHI"/>

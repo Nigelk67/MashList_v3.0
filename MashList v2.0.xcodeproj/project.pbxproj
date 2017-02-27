@@ -26,6 +26,7 @@
 		A6707E971E471E5B00974622 /* PopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6707E961E471E5A00974622 /* PopUpVC.swift */; };
 		A6707E991E4B389100974622 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6707E981E4B388500974622 /* HomeVC.swift */; };
 		A6707E9B1E4B5D9800974622 /* HomeScreenCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6707E9A1E4B5D9800974622 /* HomeScreenCell.swift */; };
+		A6DA70241E6329EF0092CAB9 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6DA70231E6329E90092CAB9 /* Post.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +52,7 @@
 		A6707E961E471E5A00974622 /* PopUpVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopUpVC.swift; sourceTree = "<group>"; };
 		A6707E981E4B388500974622 /* HomeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		A6707E9A1E4B5D9800974622 /* HomeScreenCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeScreenCell.swift; sourceTree = "<group>"; };
+		A6DA70231E6329E90092CAB9 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		F55E2A9D8A2B53B0DAC89F9B /* Pods_MashList_v2_0.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MashList_v2_0.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -124,6 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				A6707E831E3F744200974622 /* MediaItem.swift */,
+				A6DA70231E6329E90092CAB9 /* Post.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -290,6 +293,7 @@
 				A6707E901E42441F00974622 /* CustomBtn.swift in Sources */,
 				A6707E841E3F744300974622 /* MediaItem.swift in Sources */,
 				A6707E9B1E4B5D9800974622 /* HomeScreenCell.swift in Sources */,
+				A6DA70241E6329EF0092CAB9 /* Post.swift in Sources */,
 				A61712FF1E51E6EF00EE3291 /* SignInVC.swift in Sources */,
 				A6707E871E41C7C100974622 /* DataService.swift in Sources */,
 				A6707E8C1E4229D100974622 /* RoundedRect.swift in Sources */,

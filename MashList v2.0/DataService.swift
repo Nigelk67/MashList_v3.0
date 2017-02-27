@@ -8,7 +8,11 @@
 
 import Foundation
 import Alamofire
+import Firebase
 
+
+
+let DB_BASE = FIRDatabase.database().reference()
 
 class DataService {
     
@@ -20,6 +24,28 @@ class DataService {
    
     var mediaItem: MediaItem!
     var search: SearchVC!
+    
+    //Firebase Database Info:-
+    private var _REF_BASE = DB_BASE
+    private var _REF_POSTS = DB_BASE.child("posts")
+    private var _REF_USERS = DB_BASE.child("users")
+    
+    var REF_BASE: FIRDatabaseReference {
+        return _REF_BASE
+    }
+    
+    var REF_POSTS: FIRDatabaseReference {
+        return _REF_POSTS
+    }
+    
+    var REF_USERS: FIRDatabaseReference {
+        return _REF_USERS
+    }
+    
+    func createFirebaseDBUser(uid: String, userData: Dictionary<String, String>) {
+        REF_USERS.child(uid).updateChildValues(userData)
+    }
+    
     
     ///dcs:  added completion handler to this method that will send back an array of mediaitem objects
     func downloadiTunesData(trimmedText: String, type: String, completion: @escaping (_ result: [MediaItem]) -> Void) {
@@ -75,28 +101,7 @@ class DataService {
     })
 }
     
-//    func downloadPoster(completion: @escaping (_ result: [MediaItem]) -> Void) {
-//        Alamofire.request(IMAGE_URL).responseJSON(completionHandler: { (response) in
-//            if let dict = response.result.value as? Dictionary<String, AnyObject> {
-//                if let results = dict["results"] as? NSArray {
-//                    for index in 0..<results.count {
-//                        let mItem: MediaItem = MediaItem()
-//                        for ( key, value) in (results[index] as? Dictionary<String, AnyObject>)! {
-//                            if key == "poster_path" {
-//                                mItem.backdropImage = value as! String
-//                            }
-//                            
-//                        }
-//                        print(mItem.backdropImage)
-//                        self.TmdbTitles.append(mItem)
-//                    }
-//                   
-//                
-//                }
-//            }
-//            completion(self.TmdbTitles)
-//        })
-//    }
+    
     
     
     

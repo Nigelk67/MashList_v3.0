@@ -46,13 +46,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             guard let uid = user?.uid else { return }
             print("Successfullx logged in to Firebase with Google", uid)
             //Links to anonymous account:-
-            FIRAuth.auth()?.currentUser?.link(with: credentials, completion: { (user, error) in
-                if error != nil {
-                    print("NIGE: Unable to link anon user using Google")
-                } else {
-                    print("Successfully linked anon user with Google account")
-                }
-            })
+//            guard let authentication = user.authentication else {return}
+//            let credential = FIRGoogleAuthProvider.credential(withIDToken: authentication.idToken, accessToken: authentication.accessToken)
+//            FIRAuth.auth()?.currentUser?.link(with: credential, completion: { (user, error) in
+//                if error != nil {
+//                    print("NIGE: Unable to link anon user using Google")
+//                } else {
+//                    print("Successfully linked anon user with Google account")
+//                }
+//            })
         })
     }
     

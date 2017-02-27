@@ -27,8 +27,7 @@ class SignInVC: UIViewController, GIDSignInUIDelegate, UITextFieldDelegate {
         super.viewDidLoad()
         
         GIDSignIn.sharedInstance().uiDelegate = self
-        //GIDSignIn.sharedInstance().signIn()
-        
+
         passwordField.delegate = self
         
         
@@ -63,19 +62,20 @@ class SignInVC: UIViewController, GIDSignInUIDelegate, UITextFieldDelegate {
                 print("NIGE: User cancelled Facebook authentication")
             } else {
                 print("NIGE: Successfully autheinticated with Facebook")
+                
                 let credential = FIRFacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
-                FIRAuth.auth()?.currentUser?.link(with: credential, completion: { (user, error) in
-                    if error != nil {
-                        let alert = UIAlertController(title: "WTF??", message: error?.localizedDescription, preferredStyle: .alert)
-                        let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-                        alert.addAction(defaultAction)
-                        self.present(alert, animated: true, completion: nil)
-                    } else {
-                    print("NIGE: Successfully linked Facebook sign in with anon user")
-                        //Add in the Firebase Database stuff HERE!!
-                    }
-
-                })
+//                FIRAuth.auth()?.currentUser?.link(with: credential, completion: { (user, error) in
+//                    if error != nil {
+//                        let alert = UIAlertController(title: "WTF??", message: error?.localizedDescription, preferredStyle: .alert)
+//                        let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+//                        alert.addAction(defaultAction)
+//                        self.present(alert, animated: true, completion: nil)
+//                    } else {
+//                    print("NIGE: Successfully linked Facebook sign in with anon user")
+//                        //Add in the Firebase Database stuff HERE!!
+//                    }
+//
+//                })
                 self.firebaseAuth(credential)
             }
         }
@@ -91,7 +91,8 @@ class SignInVC: UIViewController, GIDSignInUIDelegate, UITextFieldDelegate {
             } else {
                 print("Successfully auth with Firebase")
                 if let user = user {
-                    self.completeSignIn(id: user.uid)
+                    let userData = ["provider": credential.provider]
+                    self.completeSignIn(id: user.uid, userData: userData)
                     
                 }
             }
@@ -105,7 +106,8 @@ class SignInVC: UIViewController, GIDSignInUIDelegate, UITextFieldDelegate {
                 if error == nil {
                     print("NIGE: Email user authenticated with Firebase")
                     if let user = user {
-                        self.completeSignIn(id: user.uid)
+                        let userData = ["provider": user.providerID]
+                        self.completeSignIn(id: user.uid, userData: userData)
                         }
                 
                 } else {
@@ -115,34 +117,30 @@ class SignInVC: UIViewController, GIDSignInUIDelegate, UITextFieldDelegate {
                         } else {
                             print("NIGE: Succesfully authenticated withFirebase")
                             //LINKS anonymous user to email and password account:-
-                            let credential = FIREmailPasswordAuthProvider.credential(withEmail: email, password: pwd)
-                            FIRAuth.auth()?.currentUser?.link(with: credential, completion: { (user, error) in
-                                if error != nil {
-                                    let alert = UIAlertController(title: "Unable to link your ananymous account", message: error?.localizedDescription, preferredStyle: .alert)
-                                    let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-                                    alert.addAction(defaultAction)
-                                    self.present(alert, animated: true, completion: nil)
-                                } else {
-                                    print("Linked to anon user")
-                                    //Need to add in the link to create a Database user
-                                }
+//                            let credential = FIREmailPasswordAuthProvider.credential(withEmail: email, password: pwd)
+//                            FIRAuth.auth()?.currentUser?.link(with: credential, completion: { (user, error) in
+//                                if error != nil {
+//                                    let alert = UIAlertController(title: "Unable to link your ananymous account", message: error?.localizedDescription, preferredStyle: .alert)
+//                                    let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+//                                    alert.addAction(defaultAction)
+//                                    self.present(alert, animated: true, completion: nil)
+//                                } else {
+//                                    print("Linked to anon user")
+//                                    //Need to add in the link to create a Database user
+//                                }
 
                             if let user = user {
-                            self.completeSignIn(id: user.uid)
+                                let userData = ["provider": user.providerID]
+                            self.completeSignIn(id: user.uid, userData: userData)
                     }
-                })
+                
             }
         })
        }
     })
   }
 }
-    
-            
-            
-            
-            
-        
+
     
     
     //ANONYMOUS SIGN IN:-
@@ -159,7 +157,8 @@ class SignInVC: UIViewController, GIDSignInUIDelegate, UITextFieldDelegate {
             } else {
                 print("NIGE: Successfully sign in anonymously")
                 if let user = user {
-                    self.completeSignIn(id: user.uid)
+                    let userData = ["provider": user.providerID]
+                    self.completeSignIn(id: user.uid, userData: userData)
                 }
             }
         })
@@ -172,12 +171,25 @@ class SignInVC: UIViewController, GIDSignInUIDelegate, UITextFieldDelegate {
         
         GIDSignIn.sharedInstance().signIn()
         
+//        //Links to anonymous account:-
+//        guard let authentication = user.authentication else {return}
+//        let credential = FIRGoogleAuthProvider.credential(withIDToken: authentication.idToken, accessToken: authentication.accessToken)
+//        FIRAuth.auth()?.currentUser?.link(with: credential, completion: { (user, error) in
+//            if error != nil {
+//                print("NIGE: Unable to link anon user using Google")
+//            } else {
+//                print("Successfully linked anon user with Google account")
+//            }
+//        })
+
         performSegue(withIdentifier: "goToHome", sender: nil)
         
     }
     
-    func completeSignIn(id: String) {
-        
+    func completeSignIn(id: String, userData: Dictionary<String, String>) {
+        //To write into the Firebase Db:-
+        DataService.ds.createFirebaseDBUser(uid: id, userData: userData)
+        //For autosign in:-
         KeychainWrapper.standard.set(id, forKey: KEY_UID)
         
         performSegue(withIdentifier: "goToHome", sender: nil)

@@ -20,9 +20,23 @@ private var _imgURL: String!
 private var _artistName: String!
 private var _price: String!
 private var _backdropImage: String!
+    private var _recommendedBy: String!
     
     
+    //Getters & Setters:-
     
+    var recommendedBy: String {
+        get {
+            if _recommendedBy == nil {
+                _recommendedBy = ""
+            }
+            return _recommendedBy
+        }
+        set {
+            _recommendedBy = newValue
+        }
+    }
+       
     var Price: String {
         get {
             if _price == nil {
@@ -121,6 +135,18 @@ var itemDescription: String {
         }
         
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
         
         
     
