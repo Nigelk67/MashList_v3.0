@@ -51,7 +51,7 @@ class SignInVC: UIViewController, GIDSignInUIDelegate, UITextFieldDelegate {
     
     
     //FACEBOOK sign in:-
-    @IBAction func facebookBtnPressed(_ sender: UITapGestureRecognizer) {
+    @IBAction func facebookBtnPressed(_ sender: Any) {
         
         let facebookLogin = FBSDKLoginManager()
         
@@ -144,7 +144,7 @@ class SignInVC: UIViewController, GIDSignInUIDelegate, UITextFieldDelegate {
     
     
     //ANONYMOUS SIGN IN:-
-    @IBAction func anonymousSignin(_ sender: Any) {
+    @IBAction func anonymousSignin(_ sender: UIButton) {
         
         FIRAuth.auth()?.signInAnonymously(completion: { (user, error) in
             if error != nil {
@@ -167,7 +167,7 @@ class SignInVC: UIViewController, GIDSignInUIDelegate, UITextFieldDelegate {
     
     
     //GOOGLE SIGN IN:-
-    @IBAction func googleSignInButtonPressed(_ sender: UIButton) {
+    @IBAction func googleSignInButtonPressed(_ sender: Any) {
         
         GIDSignIn.sharedInstance().signIn()
         

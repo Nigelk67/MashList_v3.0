@@ -17,9 +17,21 @@ class Post {
     private var _title: String!
     private var _postKey: String!
     private var _userId: String!
-    
+    private var _type: String!
     
     //Getters and Setters:-
+    
+    var type: String {
+        get {
+            if _type == nil {
+                _type = ""
+            }
+            return _type
+        }
+        set {
+            _type = newValue
+        }
+    }
     
     var userId: String {
         get {

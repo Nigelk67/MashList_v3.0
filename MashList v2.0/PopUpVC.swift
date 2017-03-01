@@ -164,10 +164,10 @@ class PopUpVC: UIViewController, UITextFieldDelegate {
         firebasePost.setValue(post)
         
         //This clears out the fields (caption and image) ready for a new post:-
-        itemDetail.text = ""
-        directorLbl.text = ""
-        RecommendedByLbl.text = ""
-        nameLbl.text = ""
+//        itemDetail.text = ""
+//        directorLbl.text = ""
+//        RecommendedByLbl.text = ""
+//        nameLbl.text = ""
         //Clearing out the IMAGE??????
         
         
@@ -177,6 +177,10 @@ class PopUpVC: UIViewController, UITextFieldDelegate {
     
     
     @IBAction func skipBtnPressed(_ sender: Any) {
+        
+        
+        
+        
         
         performSegue(withIdentifier: "HomeVC", sender: "PopUpVC")
     }

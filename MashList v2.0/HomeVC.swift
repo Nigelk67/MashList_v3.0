@@ -10,17 +10,30 @@ import UIKit
 import SwiftKeychainWrapper
 import Firebase
 
+var type: String!
+
 
 class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var movieButton: UIButton!
+    @IBOutlet weak var tvButton: UIButton!
+    @IBOutlet weak var addButton: UIButton!
+    @IBOutlet weak var addView: UIView!
     
+    var movieButtonCenter: CGPoint!
+    var tvButtonCenter: CGPoint!
    
     var posts = [Post]()
+    
+    var search: SearchVC!
+    
+    var post: Post!
     
     var mediaItems = [MediaItem]()
     
     static var imageCache: NSCache<NSString, UIImage> = NSCache()
+    
     
     
     
@@ -29,6 +42,16 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        movieButtonCenter = movieButton.center
+        tvButtonCenter = tvButton.center
+        
+        
+        movieButton.center = addButton.center
+        tvButton.center = addButton.center
+        
+        
+        
 
         tableView.delegate = self
         tableView.dataSource = self
@@ -69,12 +92,15 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             //For the images from the cache:-
             if let img = HomeVC.imageCache.object(forKey: post.imageURL as NSString) {
                 cell.configureCell(post: post, img: img)
-                return cell
+                
             } else {
-            
+        
             cell.configureCell(post: post)
-            return cell
             }
+            
+            return cell
+            
+            //For safety:-
         } else {
             return HomeScreenCell()
         }
@@ -93,8 +119,26 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     
     @IBAction func addButtonPressed(_ sender: UIButton) {
+        if addView.alpha == 0 {
+            UIView.animate(withDuration: 0.3, animations: {
+                self.addView.alpha = 0.8
+                self.tvButton.alpha = 1
+                self.movieButton.alpha = 1
+                self.movieButton.center = self.movieButtonCenter
+                self.tvButton.center = self.tvButtonCenter
+            })
+        } else {
+            UIView.animate(withDuration: 0.3, animations: {
+                self.addView.alpha = 0
+                self.tvButton.alpha = 0
+                self.movieButton.alpha = 0
+                self.tvButton.center = self.addButton.center
+                self.movieButton.center = self.addButton.center
+            })
+        }
         
-        performSegue(withIdentifier: "SearchVC", sender: "HomeVC")
+
+       // performSegue(withIdentifier: "SearchVC", sender: "HomeVC")
     }
     
     
@@ -111,7 +155,22 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     
+    @IBAction func movieButtonPressed(_ sender: UIButton) {
+        
+      type = "&media=movie"
+       
+        
+        performSegue(withIdentifier: "SearchVC", sender: "HomeVC")
     
+    }
+    
+    
+    @IBAction func tvButtonPressed(_ sender: UIButton) {
+           type = "&media=tvShow&entity=tvSeason"
+      
+        
+        performSegue(withIdentifier: "SearchVC", sender: "HomeVC")
+    }
     
     
     

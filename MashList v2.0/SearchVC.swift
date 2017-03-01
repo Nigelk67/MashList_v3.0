@@ -14,11 +14,13 @@ class SearchVC: UIViewController, UICollectionViewDelegate, UICollectionViewData
     @IBOutlet weak var collection: UICollectionView!
     @IBOutlet weak var searchBar: UISearchBar!
     
-    @IBOutlet weak var tvButton: UIButton!
-    @IBOutlet weak var movieButton: UIButton!
+    
+    @IBOutlet weak var mediaImage: UIImageView!
     
     
     
+    var media: HomeVC!
+    var post: Post!
     
     var mediaItems = [MediaItem]()
     var mItem: MediaItem = MediaItem()
@@ -27,8 +29,9 @@ class SearchVC: UIViewController, UICollectionViewDelegate, UICollectionViewData
     var trimmedText: String!
     var itemTitle: String?
     var searchUrl: String!
-    var type: String!
+   
     
+
     
     //Create array for the search function:-
     var filteredItems = [MediaItem]()
@@ -40,6 +43,13 @@ class SearchVC: UIViewController, UICollectionViewDelegate, UICollectionViewData
     override func viewDidLoad() {
         super.viewDidLoad()
 
+    print(type)
+        
+        if type == "&media=movie" {
+            mediaImage.image = #imageLiteral(resourceName: "MovieButton")
+        } else {
+            mediaImage.image = #imageLiteral(resourceName: "TVButton")
+        }
         
         //dcs: updated this download method to include a completion handler which is called when you download all of the data for the request
 //        DataService.ds.downloadiTunesData { (DownloadedItems) in
@@ -56,23 +66,7 @@ class SearchVC: UIViewController, UICollectionViewDelegate, UICollectionViewData
  }
 
 
-    @IBAction func tvButtonPressed(_ sender: Any) {
-        
-        tvButton.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
-        movieButton.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
-        type = "&media=tvShow&entity=tvSeason"
-    }
-    
-    
-    
-    @IBAction func movieButtonPressed(_ sender: Any) {
-        
-        movieButton.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
-        tvButton.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
-        type = "&media=movie"
-    }
-    
-    
+
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if searchBar.text == nil || searchBar.text == "" {
@@ -96,7 +90,7 @@ class SearchVC: UIViewController, UICollectionViewDelegate, UICollectionViewData
             })
       }
     }
-
+    
    
     @IBAction func backButtonPressed(_ sender: UIButton) {
         

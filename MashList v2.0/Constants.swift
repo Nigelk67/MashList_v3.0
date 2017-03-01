@@ -12,10 +12,10 @@ var search: SearchVC!
 
 let CORE_URL = "https://itunes.apple.com/search?term="
 let COUNTRY = "&country=GB"
-let TYPE = "&entity=tv"
+//let TYPE = "&entity=tv"
 let TEST_URL = "https://itunes.apple.com/search?term=Xmen&country=GB&entity=movie"
 
-let SEARCH_URL = "\(CORE_URL)\(search.searchBar.text)\(COUNTRY)\(TYPE)"
+//let SEARCH_URL = "\(CORE_URL)\(search.searchBar.text)\(COUNTRY)\(TYPE)"
 
 let IMAGE_CORE_URL = "https://api.themoviedb.org/3/search/"
 let IMAGE_TYPE_URL = "movie?"

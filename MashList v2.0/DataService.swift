@@ -9,6 +9,7 @@
 import Foundation
 import Alamofire
 import Firebase
+import SwiftKeychainWrapper
 
 //For the images - use Firebase storage:-
 let STORAGE_BASE = FIRStorage.storage().reference()
@@ -26,6 +27,7 @@ class DataService {
    
     var mediaItem: MediaItem!
     var search: SearchVC!
+    var media: HomeVC!
     
     //DB references to the title-posters:-
     private var _REF_POSTERS = STORAGE_BASE.child("title-posters")
@@ -48,6 +50,13 @@ class DataService {
     var REF_USERS: FIRDatabaseReference {
         return _REF_USERS
     }
+    
+    //Create a variable to identify who the current user is:-
+    var REF_USER_CURRENT: FIRDatabaseReference {
+        let uid = KeychainWrapper.standard.string(forKey: KEY_UID)
+        let user = REF_USERS.child(uid!)
+            return user
+        }
     
     
     
