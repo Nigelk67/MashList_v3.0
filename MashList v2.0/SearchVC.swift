@@ -29,6 +29,7 @@ class SearchVC: UIViewController, UICollectionViewDelegate, UICollectionViewData
     var trimmedText: String!
     var itemTitle: String?
     var searchUrl: String!
+    //var type: String!
    
     
 
@@ -42,9 +43,10 @@ class SearchVC: UIViewController, UICollectionViewDelegate, UICollectionViewData
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-    print(type)
         
+        print(type)
+        
+
         if type == "&media=movie" {
             mediaImage.image = #imageLiteral(resourceName: "MovieButton")
         } else {
@@ -75,6 +77,7 @@ class SearchVC: UIViewController, UICollectionViewDelegate, UICollectionViewData
         } else {
             //Removes previous search results:-
             DataService.ds.mediaTitles.removeAll()
+            
             //Takes spaces out of the search text:-
             trimmedText = searchBar.text?.replacingOccurrences(of: " ", with: "")
             inSearchMode = true

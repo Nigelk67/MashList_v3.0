@@ -10,6 +10,7 @@ import Foundation
 
 class Post {
     
+    
     private var _longDesc: String!
     private var _director: String!
     private var _imageURL: String!
@@ -18,8 +19,21 @@ class Post {
     private var _postKey: String!
     private var _userId: String!
     private var _type: String!
+    private var _timestamp: NSNumber!
     
     //Getters and Setters:-
+    
+    var timestamp: NSNumber {
+        get {
+            if _timestamp == nil {
+                _timestamp = 0
+            }
+            return _timestamp
+        }
+        set {
+            _timestamp = newValue
+        }
+    }
     
     var type: String {
         get {
@@ -138,7 +152,12 @@ class Post {
         if let title = postData["title"] {
             self._title = title
         }
-        
+        if let userId = postData["userId"] {
+            self._userId = userId
+        }
+        if let timestamp = postData["timestamp"] {
+            self._timestamp = Int(timestamp) as NSNumber!
+        }
     }
     
 

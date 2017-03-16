@@ -28,9 +28,13 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var search: SearchVC!
     
+    var users = [User]()
+    
     var post: Post!
     
     var mediaItems = [MediaItem]()
+    
+    
     
     static var imageCache: NSCache<NSString, UIImage> = NSCache()
     
@@ -49,16 +53,47 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         movieButton.center = addButton.center
         tvButton.center = addButton.center
-        
-        
-        
 
         tableView.delegate = self
         tableView.dataSource = self
-        //tableView.reloadData()
         
+        observeUserPosts()
         
-        //Listens out for changes in Firebase posts:- NIT SURE THIS IS WORKING:-
+}
+    
+    func observeUserPosts() {
+        
+        guard let uid = FIRAuth.auth()?.currentUser?.uid else {return}
+        
+        let ref = DB_BASE.child("user-posts").child(uid)
+        
+        ref.observe(.childAdded, with: { (snapshot) in
+            let postId = snapshot.key
+            let postReference = DB_BASE.child("posts").child(postId)
+            
+            postReference.observe(.value, with: { (snapshot) in
+                print(snapshot)
+                
+                if let postDict = snapshot.value as? Dictionary<String, String> {
+                    let key = snapshot.key
+                    
+                    let post = Post(postKey: key, postData: postDict)
+                    self.posts.append(post)
+                    
+                }
+
+                self.tableView.reloadData()
+
+                
+            }, withCancel: nil)
+        
+        }, withCancel: nil)
+        
+    }
+    
+
+    func observePosts() {
+        //Listens out for changes in Firebase posts:-
         DataService.ds.REF_POSTS.observe(.value, with: { (snapshot) in
             
             //This line ensures there are no duplicates:-
@@ -71,16 +106,22 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     print("SNAP: \(snap)")
                     if let postDict = snap.value as? Dictionary<String, String> {
                         let key = snap.key
+                        
                         let post = Post(postKey: key, postData: postDict)
                         self.posts.append(post)
+                        
                     }
                 }
-        }
+            }
+            
             self.tableView.reloadData()
-    })
-        
-}
+            
+        })
 
+        }
+    
+    
+    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -115,6 +156,19 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
+    
+    //Delete function:-
+        func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if(editingStyle == UITableViewCellEditingStyle.delete) {
+           
+           self.posts.remove(at: indexPath.row)
+         //DataService.ds.REF_POSTS.child("posts").child(posts[indexPath.row].postId).removeValue()
+            tableView.reloadData()
+            
+            //>>>>>>NEED TO REMOVE THIS FROM FIREBASE DB TOO<<<<<<
+        }
+    }
+    
     
     
     

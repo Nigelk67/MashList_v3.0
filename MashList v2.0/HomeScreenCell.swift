@@ -18,6 +18,7 @@ class HomeScreenCell: UITableViewCell {
     @IBOutlet weak var directorLabel: UILabel!
     @IBOutlet weak var titleDesc: UILabel!
     @IBOutlet weak var recommendedByLbl: UILabel!
+    @IBOutlet weak var dateLbl: UILabel!
     
     
     override func awakeFromNib() {
@@ -28,10 +29,12 @@ class HomeScreenCell: UITableViewCell {
    
     func configureCell(post: Post, img: UIImage? = nil) {
         
+        
         titleLbl.text = post.title
-        directorLabel.text = "Dir: \(post.director)"
+        directorLabel.text = post.director
         titleDesc.text = post.longDesc
         recommendedByLbl.text = "Recommended by: \(post.recommendedBy)"
+        //dateLbl.text = "Added: \()"
 
         if img != nil {
             titleImg.image = img
