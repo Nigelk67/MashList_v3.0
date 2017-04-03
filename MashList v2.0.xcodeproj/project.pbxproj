@@ -35,6 +35,7 @@
 		57E0963DE632123271851687 /* Pods-MashList v2.0.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MashList v2.0.release.xcconfig"; path = "Pods/Target Support Files/Pods-MashList v2.0/Pods-MashList v2.0.release.xcconfig"; sourceTree = "<group>"; };
 		A61712FC1E50A2E200EE3291 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A61712FE1E51E6EE00EE3291 /* SignInVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
+		A63E17D61E8E8B400009DC14 /* MashList v2.0.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "MashList v2.0.entitlements"; sourceTree = "<group>"; };
 		A6707E671E3F3F1000974622 /* MashList v2.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MashList v2.0.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6707E6A1E3F3F1100974622 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A6707E6F1E3F3F1100974622 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -100,6 +101,7 @@
 		A6707E691E3F3F1000974622 /* MashList v2.0 */ = {
 			isa = PBXGroup;
 			children = (
+				A63E17D61E8E8B400009DC14 /* MashList v2.0.entitlements */,
 				A6707E881E41D6AB00974622 /* Model */,
 				A6707E891E41D6BE00974622 /* View */,
 				A6707E8A1E41D6C800974622 /* Controller */,
@@ -202,6 +204,11 @@
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = KUSD7MWQL4;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -429,6 +436,7 @@
 			baseConfigurationReference = 2C7AAE3309CFE9B074667212 /* Pods-MashList v2.0.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "MashList v2.0/MashList v2.0.entitlements";
 				DEVELOPMENT_TEAM = KUSD7MWQL4;
 				INFOPLIST_FILE = "MashList v2.0/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -443,6 +451,7 @@
 			baseConfigurationReference = 57E0963DE632123271851687 /* Pods-MashList v2.0.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "MashList v2.0/MashList v2.0.entitlements";
 				DEVELOPMENT_TEAM = KUSD7MWQL4;
 				INFOPLIST_FILE = "MashList v2.0/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

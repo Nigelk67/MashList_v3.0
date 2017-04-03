@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Firebase
+import SwiftKeychainWrapper
 
 
 class SearchVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITextFieldDelegate, UISearchBarDelegate {
@@ -29,8 +31,6 @@ class SearchVC: UIViewController, UICollectionViewDelegate, UICollectionViewData
     var trimmedText: String!
     var itemTitle: String?
     var searchUrl: String!
-    //var type: String!
-   
     
 
     
@@ -52,11 +52,6 @@ class SearchVC: UIViewController, UICollectionViewDelegate, UICollectionViewData
         } else {
             mediaImage.image = #imageLiteral(resourceName: "TVButton")
         }
-        
-        //dcs: updated this download method to include a completion handler which is called when you download all of the data for the request
-//        DataService.ds.downloadiTunesData { (DownloadedItems) in
-//            self.mediaItems = DownloadedItems
-        
         
             self.collection.dataSource = self
             self.collection.delegate = self
@@ -134,6 +129,7 @@ class SearchVC: UIViewController, UICollectionViewDelegate, UICollectionViewData
         // Works in conjunction with the 'prepareforsegue' function below.
     }
     
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return mediaItems.count
     }
@@ -156,9 +152,7 @@ class SearchVC: UIViewController, UICollectionViewDelegate, UICollectionViewData
     }
     
     
-    
-
-    
+   
     
     
     

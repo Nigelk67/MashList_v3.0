@@ -26,16 +26,37 @@ class SignInVC: UIViewController, GIDSignInUIDelegate, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //New Google Sign IN:-
+        let googleButton = GIDSignInButton()
+        googleButton.frame = CGRect(x: 66, y: 420, width: 243, height: 30)
+        googleButton.alpha = 0.7
+        view.addSubview(googleButton)
+        
         GIDSignIn.sharedInstance().uiDelegate = self
 
         passwordField.delegate = self
         
-        
-        
-        
     }
     
-    //Checks to seeif user already has an account:-
+    
+    
+    
+    
+    // To get the email and ID of Facebook user:-
+    func showFBEmailAddress() {
+        FBSDKGraphRequest(graphPath: "/me", parameters: ["fields":"id, name, email"]).start { (connection, result, err) in
+            if err != nil {
+                print("NIGE: Failed to start graph request", err as Any)
+                return
+            }
+            print(result as Any)
+        }
+    }
+    
+    
+    
+    
+    //Checks to see if user already has an account:-
     override func viewDidAppear(_ animated: Bool) {
         if let _ = KeychainWrapper.standard.string(forKey: KEY_UID) {
             performSegue(withIdentifier: "goToHome", sender: nil)
@@ -52,18 +73,23 @@ class SignInVC: UIViewController, GIDSignInUIDelegate, UITextFieldDelegate {
     
     //FACEBOOK sign in:-
     @IBAction func facebookBtnPressed(_ sender: Any) {
-        
+
         let facebookLogin = FBSDKLoginManager()
         
         facebookLogin.logIn(withReadPermissions: ["email"], from: self) { (result, error) in
             if error != nil {
-                print("NIGE: Unable to authenticate with Facebook")
+                print("NIGE: Unable to authenticate with Facebook", error as Any)
+                
             } else if result?.isCancelled == true {
                 print("NIGE: User cancelled Facebook authentication")
             } else {
                 print("NIGE: Successfully autheinticated with Facebook")
+                self.showFBEmailAddress()
                 
+    
                 let credential = FIRFacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
+                
+               // Linking an anon user to Facebook sign in:-
 //                FIRAuth.auth()?.currentUser?.link(with: credential, completion: { (user, error) in
 //                    if error != nil {
 //                        let alert = UIAlertController(title: "WTF??", message: error?.localizedDescription, preferredStyle: .alert)
@@ -76,11 +102,15 @@ class SignInVC: UIViewController, GIDSignInUIDelegate, UITextFieldDelegate {
 //                    }
 //
 //                })
+                
+                
                 self.firebaseAuth(credential)
             }
         }
         
-    }
+   }
+    
+    
     
     //Authentication for MULTIPLE sign in methods with FIREBASE. Need to call this after each set of sign in methods (see above for Facebook):-
 
@@ -167,24 +197,24 @@ class SignInVC: UIViewController, GIDSignInUIDelegate, UITextFieldDelegate {
     
     
     //GOOGLE SIGN IN:-
-    @IBAction func googleSignInButtonPressed(_ sender: Any) {
-        
-        GIDSignIn.sharedInstance().signIn()
-        
-//        //Links to anonymous account:-
-//        guard let authentication = user.authentication else {return}
-//        let credential = FIRGoogleAuthProvider.credential(withIDToken: authentication.idToken, accessToken: authentication.accessToken)
-//        FIRAuth.auth()?.currentUser?.link(with: credential, completion: { (user, error) in
-//            if error != nil {
-//                print("NIGE: Unable to link anon user using Google")
-//            } else {
-//                print("Successfully linked anon user with Google account")
-//            }
-//        })
-
-        performSegue(withIdentifier: "goToHome", sender: nil)
-        
-    }
+//    @IBAction func googleSignInButtonPressed(_ sender: Any) {
+//        
+//        GIDSignIn.sharedInstance().signIn()
+//        
+////        //Links to anonymous account:-
+////        guard let authentication = user.authentication else {return}
+////        let credential = FIRGoogleAuthProvider.credential(withIDToken: authentication.idToken, accessToken: authentication.accessToken)
+////        FIRAuth.auth()?.currentUser?.link(with: credential, completion: { (user, error) in
+////            if error != nil {
+////                print("NIGE: Unable to link anon user using Google")
+////            } else {
+////                print("Successfully linked anon user with Google account")
+////            }
+////        })
+//
+//        performSegue(withIdentifier: "goToHome", sender: nil)
+//        
+//    }
     
     func completeSignIn(id: String, userData: Dictionary<String, String>) {
         //To write into the Firebase Db:-

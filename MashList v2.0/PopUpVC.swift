@@ -9,6 +9,7 @@
 import UIKit
 import Alamofire
 import Firebase
+import SwiftKeychainWrapper
 
 
 class PopUpVC: UIViewController, UITextFieldDelegate {
@@ -21,6 +22,10 @@ class PopUpVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var thumbImg: UIImageView!
     @IBOutlet weak var directorLbl: UILabel!
     @IBOutlet weak var itemDetail: UITextView!
+    
+    //In the PopUp for anon sign ins:-
+    @IBOutlet weak var anonPopUpCentreConstraint: NSLayoutConstraint!
+    @IBOutlet weak var anonPopUpView: UIView!
     
     var item: MediaItem!
     var itemCell: ItemCell!
@@ -45,10 +50,9 @@ class PopUpVC: UIViewController, UITextFieldDelegate {
         //self.mediaItems = DownloadedItems
         
         self.RecommendedByLbl.delegate = self
-
         
         
-             nameLbl.text = item.mediaTitle
+        nameLbl.text = item.mediaTitle
         directorLbl.text = item.director
         itemDetail.text = item.itemDescription
         
@@ -71,6 +75,9 @@ class PopUpVC: UIViewController, UITextFieldDelegate {
             }
         }
         
+        
+        anonPopUpView.layer.cornerRadius = 20
+        
         popUpView.layer.cornerRadius = 20
         //popUpView.layer.masksToBounds = true
         RecommendPopUpView.layer.cornerRadius = 20
@@ -81,16 +88,30 @@ class PopUpVC: UIViewController, UITextFieldDelegate {
     
     
     @IBAction func ShowRecommendedPopup(_ sender: UIButton) {
+        
+        if (FIRAuth.auth()?.currentUser?.isAnonymous)! {
+            
+            anonPopUpCentreConstraint.constant = 0
+            // With Spring Dampers, the higher the number (max = 1) the less bounce you get:-
+            UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: .curveEaseOut, animations: {
+                self.view.layoutIfNeeded()
+            }, completion: nil)
+            
+            
+        } else {
+        
         centerPopupConstraint.constant = 0
         popUpView.isHidden = true
         
-       
         // With Spring Dampers, the higher the number (max = 1) the less bounce you get:-
         UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: .curveEaseOut, animations: {
             self.view.layoutIfNeeded()
         }, completion: nil)
         
-    }
+      }
+   }
+    
+    
     
     //2 x Close functions for keyboard - either clicking on return or touching outdside. NOTE need to connect the textField delegate to the VC, and include the self.delegate code in ViewDidLoad.
     
@@ -117,6 +138,7 @@ class PopUpVC: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func continueBtnPressed(_ sender: Any) {
+        
         if let img = thumbImg.image {
             
             //Converts image to image data to pass into Firebase (as a JPEG) & compresses it:-
@@ -144,13 +166,47 @@ class PopUpVC: UIViewController, UITextFieldDelegate {
                 }
             }
         }
-            
     }
         
         performSegue(withIdentifier: "HomeVC", sender: "PopUpVC")
         
     }
   }
+    
+    
+    @IBAction func signInButtonPressed(_ sender: UIButton) {
+        
+        //NEED TO LOGOUT HERE:
+        
+        //Removes Keychain authentication:-
+        KeychainWrapper.standard.removeObject(forKey: KEY_UID)
+        
+        //signs out from Firebase:-
+        try! FIRAuth.auth()?.signOut()
+        
+        performSegue(withIdentifier: "goToSignIn", sender: "PopUpVC")
+
+    }
+    
+    
+    @IBAction func cancelSignInButtonPressed(_ sender: UIButton) {
+        
+        anonPopUpCentreConstraint.constant = -320
+        
+        // With Spring Dampers, the higher the number (max = 1) the less bounce you get:-
+        UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: .curveEaseOut, animations: {
+            self.view.layoutIfNeeded()
+        }, completion: nil)
+
+    }
+  
+    
+    
+    
+    
+    
+    
+    
     //Create an object to post to Firebase:-
     func postToFirebase(imgUrl: String) {
         if (FIRAuth.auth()?.currentUser?.isAnonymous)! {
