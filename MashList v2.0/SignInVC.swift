@@ -28,7 +28,7 @@ class SignInVC: UIViewController, GIDSignInUIDelegate, UITextFieldDelegate {
         
         //New Google Sign IN:-
         let googleButton = GIDSignInButton()
-        googleButton.frame = CGRect(x: 66, y: 420, width: 243, height: 30)
+        googleButton.frame = CGRect(x: 80, y: 430, width: 150, height: 20)
         googleButton.alpha = 0.7
         view.addSubview(googleButton)
         

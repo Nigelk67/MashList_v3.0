@@ -105,7 +105,7 @@ class ItemVC: UIViewController {
     @IBAction func cancelButtonPressed(_ sender: UIButton) {
         
        // itemView.isHidden = false
-        deletePopUpCentreConstraint.constant = -320
+        deletePopUpCentreConstraint.constant = -450
         UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: .curveEaseOut, animations: {
             self.view.layoutIfNeeded()
         }, completion: nil)

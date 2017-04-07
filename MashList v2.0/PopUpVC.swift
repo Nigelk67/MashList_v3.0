@@ -129,7 +129,7 @@ class PopUpVC: UIViewController, UITextFieldDelegate {
     
     @IBAction func closeRecommendedPopUp(_ sender: UIButton) {
         
-        centerPopupConstraint.constant = -320
+        centerPopupConstraint.constant = -450
         popUpView.isHidden = false
         UIView.animate(withDuration: 0.1, animations: {
             self.view.layoutIfNeeded()
@@ -191,7 +191,7 @@ class PopUpVC: UIViewController, UITextFieldDelegate {
     
     @IBAction func cancelSignInButtonPressed(_ sender: UIButton) {
         
-        anonPopUpCentreConstraint.constant = -320
+        anonPopUpCentreConstraint.constant = -450
         
         // With Spring Dampers, the higher the number (max = 1) the less bounce you get:-
         UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: .curveEaseOut, animations: {
