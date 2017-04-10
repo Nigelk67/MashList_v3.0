@@ -26,11 +26,6 @@ class SignInVC: UIViewController, GIDSignInUIDelegate, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //New Google Sign IN:-
-        let googleButton = GIDSignInButton()
-        googleButton.frame = CGRect(x: 80, y: 430, width: 150, height: 20)
-        googleButton.alpha = 0.7
-        view.addSubview(googleButton)
         
         GIDSignIn.sharedInstance().uiDelegate = self
 
@@ -38,6 +33,15 @@ class SignInVC: UIViewController, GIDSignInUIDelegate, UITextFieldDelegate {
         
     }
     
+    //Google SignIn - see code in App Delegate plus references above:-
+//    @IBAction func googleSignInButtonPressed(_ sender: UIButton) {
+//        
+//        GIDSignIn.sharedInstance().signIn()
+//        
+//        
+//        performSegue(withIdentifier: "goToHome", sender: nil)
+//        
+//    }
     
     
     
@@ -82,27 +86,14 @@ class SignInVC: UIViewController, GIDSignInUIDelegate, UITextFieldDelegate {
                 
             } else if result?.isCancelled == true {
                 print("NIGE: User cancelled Facebook authentication")
+                
             } else {
                 print("NIGE: Successfully autheinticated with Facebook")
                 self.showFBEmailAddress()
                 
     
                 let credential = FIRFacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
-                
-               // Linking an anon user to Facebook sign in:-
-//                FIRAuth.auth()?.currentUser?.link(with: credential, completion: { (user, error) in
-//                    if error != nil {
-//                        let alert = UIAlertController(title: "WTF??", message: error?.localizedDescription, preferredStyle: .alert)
-//                        let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-//                        alert.addAction(defaultAction)
-//                        self.present(alert, animated: true, completion: nil)
-//                    } else {
-//                    print("NIGE: Successfully linked Facebook sign in with anon user")
-//                        //Add in the Firebase Database stuff HERE!!
-//                    }
-//
-//                })
-                
+            
                 
                 self.firebaseAuth(credential)
             }
@@ -128,6 +119,8 @@ class SignInVC: UIViewController, GIDSignInUIDelegate, UITextFieldDelegate {
             }
         })
     }
+    
+    
 
    //EMAIL Sign In - NEED TO ADD IN ***FURTHER ERROR HANDLING***
     @IBAction func signInButtonPressed(_ sender: UIButton) {
@@ -146,19 +139,7 @@ class SignInVC: UIViewController, GIDSignInUIDelegate, UITextFieldDelegate {
                             print("NIGE: Unable to authenticate with Firebase using email")
                         } else {
                             print("NIGE: Succesfully authenticated withFirebase")
-                            //LINKS anonymous user to email and password account:-
-//                            let credential = FIREmailPasswordAuthProvider.credential(withEmail: email, password: pwd)
-//                            FIRAuth.auth()?.currentUser?.link(with: credential, completion: { (user, error) in
-//                                if error != nil {
-//                                    let alert = UIAlertController(title: "Unable to link your ananymous account", message: error?.localizedDescription, preferredStyle: .alert)
-//                                    let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-//                                    alert.addAction(defaultAction)
-//                                    self.present(alert, animated: true, completion: nil)
-//                                } else {
-//                                    print("Linked to anon user")
-//                                    //Need to add in the link to create a Database user
-//                                }
-
+                            
                             if let user = user {
                                 let userData = ["provider": user.providerID]
                             self.completeSignIn(id: user.uid, userData: userData)
@@ -179,7 +160,7 @@ class SignInVC: UIViewController, GIDSignInUIDelegate, UITextFieldDelegate {
         FIRAuth.auth()?.signInAnonymously(completion: { (user, error) in
             if error != nil {
                 print("NIGE: Unable to sign in anonymously")
-                let alert = UIAlertController(title: "WTF??", message: error?.localizedDescription, preferredStyle: .alert)
+                let alert = UIAlertController(title: "Uhoh!!??", message: error?.localizedDescription, preferredStyle: .alert)
                 let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
                 alert.addAction(defaultAction)
                 self.present(alert, animated: true, completion: nil)
@@ -195,26 +176,9 @@ class SignInVC: UIViewController, GIDSignInUIDelegate, UITextFieldDelegate {
         
     }
     
+      
     
-    //GOOGLE SIGN IN:-
-//    @IBAction func googleSignInButtonPressed(_ sender: Any) {
-//        
-//        GIDSignIn.sharedInstance().signIn()
-//        
-////        //Links to anonymous account:-
-////        guard let authentication = user.authentication else {return}
-////        let credential = FIRGoogleAuthProvider.credential(withIDToken: authentication.idToken, accessToken: authentication.accessToken)
-////        FIRAuth.auth()?.currentUser?.link(with: credential, completion: { (user, error) in
-////            if error != nil {
-////                print("NIGE: Unable to link anon user using Google")
-////            } else {
-////                print("Successfully linked anon user with Google account")
-////            }
-////        })
-//
-//        performSegue(withIdentifier: "goToHome", sender: nil)
-//        
-//    }
+    
     
     func completeSignIn(id: String, userData: Dictionary<String, String>) {
         //To write into the Firebase Db:-

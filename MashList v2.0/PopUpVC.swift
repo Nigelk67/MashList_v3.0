@@ -46,8 +46,6 @@ class PopUpVC: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //DataService.ds.downloadiTunesData(trimmedText: trimmedText, completion: { (DownloadedItems) in
-        //self.mediaItems = DownloadedItems
         
         self.RecommendedByLbl.delegate = self
         
@@ -200,18 +198,15 @@ class PopUpVC: UIViewController, UITextFieldDelegate {
 
     }
   
-    
-    
-    
-    
-    
-    
+  
     
     //Create an object to post to Firebase:-
     func postToFirebase(imgUrl: String) {
         if (FIRAuth.auth()?.currentUser?.isAnonymous)! {
             print("Need to create a popup to get the user to sign in")
+            
         } else {
+            
         let userId = FIRAuth.auth()!.currentUser!.uid
 //        let timestamp = NSDate().timeIntervalSince1970
         let post: Dictionary<String, AnyObject> = [
@@ -239,13 +234,7 @@ class PopUpVC: UIViewController, UITextFieldDelegate {
                 userPostsRef.updateChildValues([postId: 1])
             }
         
-        //This clears out the fields (caption and image) ready for a new post:-
-//        itemDetail.text = ""
-//        directorLbl.text = ""
-//        RecommendedByLbl.text = ""
-//        nameLbl.text = ""
-        //Clearing out the IMAGE??????
-        
+            
         }
     }
     

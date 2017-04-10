@@ -60,7 +60,7 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, GIDS
 }
     
     
-    
+    // Fanning out method to capture data per user:-
     func observeUserPosts() {
         
         guard let uid = FIRAuth.auth()?.currentUser?.uid else {return}
